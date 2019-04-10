@@ -1,13 +1,12 @@
 package it.polito.tdp.meteo.db;
 
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnect {
 
-	static private final String jdbcUrl = "jdbc:mysql://localhost/meteo?user=root&password=root";
+	static private final String jdbcUrl = "jdbc:mysql://localhost/meteo?user=root&password=polito23";
 	static private DBConnect instance = null;
 
 	private DBConnect() {
@@ -22,15 +21,16 @@ public class DBConnect {
 		}
 	}
 
-	public Connection getConnection() {
-		try {
+	public static Connection getConnection() {
 
+		try {
 			Connection conn = DriverManager.getConnection(jdbcUrl);
 			return conn;
 
 		} catch (SQLException e) {
+
 			e.printStackTrace();
-			throw new RuntimeException("Cannot get connection " + jdbcUrl, e);
+			throw new RuntimeException("Cannot get a connection " + jdbcUrl, e);
 		}
 	}
 
